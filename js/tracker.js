@@ -816,12 +816,12 @@ function addPosition(position) {
                    - convert_time(vehicle.curr_position.gps_time);
 
                 if(dt != 0) {
-                    // calcualte vertical rate, m/s
+                    // calculate vertical rate
                     var rate = (position.gps_alt - vehicle.curr_position.gps_alt) / dt;
                     vehicle.ascent_rate = 0.7 * rate
                                           + 0.3 * vehicle.ascent_rate;
 
-                    // calculate horizontal rate, km/h
+                    // calculate horizontal rate
                     vehicle.horizontal_rate = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.gps_lat, position.gps_lon),
                                                                                                     new google.maps.LatLng(vehicle.curr_position.gps_lat, vehicle.curr_position.gps_lon)) / dt;
 
