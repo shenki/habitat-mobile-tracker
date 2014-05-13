@@ -823,7 +823,7 @@ function addPosition(position) {
 
                     // calculate horizontal rate, km/h
                     vehicle.horizontal_rate = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.gps_lat, position.gps_lon),
-                                                                                                    new google.maps.LatLng(vehicle.curr_position.gps_lat, vehicle.curr_position.gps_lon)) / dt / 3600;
+                                                                                                    new google.maps.LatLng(vehicle.curr_position.gps_lat, vehicle.curr_position.gps_lon)) / dt;
 
                     // only record altitude values in 2minute interval
                     if(convert_time(vehicle.curr_position.gps_time) - vehicle.time_last_alt >= 120) { // 120s = 2minutes
