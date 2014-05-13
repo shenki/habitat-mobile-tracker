@@ -358,7 +358,7 @@ function updateVehicleInfo(index, position) {
 
   var imp = offline.get('opt_imperial');
   var ascent_text = imp ? (vehicles[index].ascent_rate * 196.850394).toFixed(1) + ' ft/min' : vehicles[index].ascent_rate.toFixed(1) + ' m/s';
-  var hrate_text = imp ? (vehicles[index].horizontal_rate * 196.850394).toFixed(1) + ' ft/min' : vehicles[index].horizontal_rate.toFixed(1) + ' m/s';
+  var hrate_text = imp ? (vehicles[index].horizontal_rate * 0.621371).toFixed(1) + ' m/h' : vehicles[index].horizontal_rate.toFixed(1) + ' km/h';
 
   var coords_text;
   var ua =  navigator.userAgent.toLowerCase();
@@ -816,14 +816,14 @@ function addPosition(position) {
                    - convert_time(vehicle.curr_position.gps_time);
 
                 if(dt != 0) {
-                    // calcualte vertical rate
+                    // calcualte vertical rate, m/s
                     var rate = (position.gps_alt - vehicle.curr_position.gps_alt) / dt;
                     vehicle.ascent_rate = 0.7 * rate
                                           + 0.3 * vehicle.ascent_rate;
 
-                    // calculate horizontal rate
+                    // calculate horizontal rate, km/h
                     vehicle.horizontal_rate = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.gps_lat, position.gps_lon),
-                                                                                                    new google.maps.LatLng(vehicle.curr_position.gps_lat, vehicle.curr_position.gps_lon)) / dt;
+                                                                                                    new google.maps.LatLng(vehicle.curr_position.gps_lat, vehicle.curr_position.gps_lon)) / dt / 3600;
 
                     // only record altitude values in 2minute interval
                     if(convert_time(vehicle.curr_position.gps_time) - vehicle.time_last_alt >= 120) { // 120s = 2minutes
