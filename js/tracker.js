@@ -358,7 +358,7 @@ function updateVehicleInfo(index, position) {
 
   var imp = offline.get('opt_imperial');
   var ascent_text = imp ? (vehicles[index].ascent_rate * 196.850394).toFixed(1) + ' ft/min' : vehicles[index].ascent_rate.toFixed(1) + ' m/s';
-  var hrate_text = imp ? (vehicles[index].horizontal_rate * 0.621371).toFixed(1) + ' m/h' : vehicles[index].horizontal_rate.toFixed(1) + ' km/h';
+  var hrate_text = imp ? (vehicles[index].horizontal_rate * 2.23693629).toFixed(1) + ' mph' : (vehicles[index].horizontal_rate * 3.6).toFixed(1) + ' km/h';
 
   var coords_text;
   var ua =  navigator.userAgent.toLowerCase();
